@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# README.md  
 
-## Getting Started
+## **Acompanhante de Treino - Web Application**  
 
-First, run the development server:
+### **Visão Geral**  
+O **Acompanhante de Treino** é um aplicativo web projetado para ajudar usuários a organizar, armazenar e monitorar seus treinos de forma eficiente. O objetivo principal é criar uma experiência personalizada, onde os usuários possam acompanhar sua frequência de treino, receber recomendações para melhorar sua rotina e, futuramente, gerar treinos personalizados com o uso de inteligência artificial (IA).  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Funcionalidades Principais**  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Armazenamento de Treinos**  
+   - Permite que os usuários insiram e salvem suas rotinas de treino.  
+   - Registra a frequência semanal e mensal de treinos.  
+   - Visualização clara do progresso ao longo do tempo.  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Recomendações Personalizadas**  
+   - Sugestões automáticas de treinos mais eficientes com base no desempenho e frequência do usuário.  
+   - Alerta quando as metas de treino recomendadas não forem cumpridas.  
 
-## Learn More
+3. **Geração de Treinos com IA (Futuro)**  
+   - Criação de treinos personalizados baseados no objetivo do usuário (hipertrofia, definição, força, etc.).  
+   - Treinos adaptados ao histórico e às preferências do usuário.  
 
-To learn more about Next.js, take a look at the following resources:
+4. **Exportação de Dados**  
+   - Geração de relatórios dos treinos em diferentes formatos:  
+     - **PDF**: Layout otimizado para impressão e compartilhamento.  
+     - **Excel**: Estrutura em tabela para análises mais detalhadas.  
+     - **Imagem**: Resumo visual do treino para fácil acesso.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Público-Alvo**  
+O aplicativo é direcionado para:  
+- **Frequentadores de academia**: Iniciantes, intermediários e avançados.  
+- **Personal trainers**: Para organizar e monitorar os treinos de seus alunos.  
+- **Pessoas com metas de fitness específicas**: Usuários que buscam maior organização e acompanhamento para atingir seus objetivos.  
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Benefícios do Aplicativo**  
+- **Personalização**: Treinos e recomendações alinhados às metas do usuário.  
+- **Acessibilidade**: Disponível em qualquer navegador, com interface simples e intuitiva.  
+- **Evolução contínua**: Uso futuro de IA para melhorar os treinos e oferecer maior personalização.  
+- **Organização centralizada**: Todas as informações sobre treinos armazenadas em um único lugar.  
+- **Exportação facilitada**: Relatórios e tabelas prontos para serem salvos ou compartilhados.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### **Tecnologias Planejadas**  
+- **Frontend**: React.js ou Next.js para uma interface rápida e responsiva.  
+- **Backend**: Node.js com bancos de dados como PostgreSQL para armazenar dados dos usuários.  
+- **Inteligência Artificial (futuro)**: Modelos de aprendizado para criar treinos personalizados.  
+- **Exportação de Arquivos**: Bibliotecas como jsPDF para PDF, SheetJS para Excel e Canvas para gerar imagens.  
+
+---
+
+### **Modelo de Negócio**  
+1. **Versão Gratuita**  
+   - Acesso básico ao armazenamento de treinos e acompanhamento de frequência.  
+
+2. **Versão Premium (Futuro)**  
+   - Geração de treinos personalizados com IA.  
+   - Análise detalhada de progresso e recomendações avançadas.  
+   - Opção de exportação ilimitada em formatos premium (PDF/Excel/Imagem).  
+
+---
+
+### **Próximos Passos**  
+- **Etapa 1**: Desenvolver a funcionalidade básica de registro e acompanhamento de treinos.  
+- **Etapa 2**: Implementar gráficos de progresso e recomendações automáticas baseadas em frequência.  
+- **Etapa 3**: Adicionar funcionalidades de exportação para PDF, Excel e imagem.  
+- **Etapa 4**: Integrar modelos de inteligência artificial para geração personalizada de treinos.  
+
+---
+
+### **Conclusão**  
+O **Acompanhante de Treino** é mais do que um aplicativo; é uma ferramenta para transformar a experiência de treino em algo organizado, eficiente e personalizado. Ao permitir que os usuários acompanhem seu progresso e recebam treinos sob medida, o aplicativo busca facilitar a jornada de fitness e incentivar resultados consistentes.  
+
+Se você acredita nesta ideia, entre em contato ou acompanhe o desenvolvimento para fazer parte deste projeto inovador. 💪
