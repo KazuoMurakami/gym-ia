@@ -78,3 +78,4 @@ O aplicativo é direcionado para:
 O **Acompanhante de Treino** é mais do que um aplicativo; é uma ferramenta para transformar a experiência de treino em algo organizado, eficiente e personalizado. Ao permitir que os usuários acompanhem seu progresso e recebam treinos sob medida, o aplicativo busca facilitar a jornada de fitness e incentivar resultados consistentes.  
 
 Se você acredita nesta ideia, entre em contato ou acompanhe o desenvolvimento para fazer parte deste projeto inovador. 💪
+
