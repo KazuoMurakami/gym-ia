@@ -17,7 +17,11 @@ const handler = NextAuth({
           credentials?.email === 'user@example.com' &&
           credentials?.password === 'password'
         ) {
-          return { id: '1', name: 'Usuário Exemplo', email: 'user@example.com' }
+          return {
+            id: '1',
+            name: 'Usuário Exemplo',
+            email: 'user@example.com',
+          }
         } else {
           return null
         }

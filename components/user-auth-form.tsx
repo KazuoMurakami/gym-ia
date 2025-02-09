@@ -11,7 +11,10 @@ import { AlertCircle } from 'lucide-react'
 
 export default function UserAuthForm() {
   const router = useRouter()
-  const [state, action, pending] = useActionState(signin, null)
+  const [state, action, pending] = useActionState(signin, {
+    email: '',
+    password: '',
+  })
 
   useEffect(() => {
     if (state?.success) {
@@ -36,6 +39,7 @@ export default function UserAuthForm() {
               autoComplete="email"
               autoCorrect="off"
               disabled={pending}
+              defaultValue={state?.data?.email || ''}
             />
             {state?.errors && 'email' in state.errors && (
               <div>
@@ -58,6 +62,7 @@ export default function UserAuthForm() {
               autoCapitalize="none"
               autoComplete={'current-password'}
               disabled={pending}
+              defaultValue={state?.data?.password || ''}
             />
             {state?.errors && 'password' in state.errors && (
               <div className="flex items-center space-x-2 text-red-500 py-2">

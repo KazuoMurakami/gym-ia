@@ -17,9 +17,8 @@ export default function DashboardLayout({
       <header className="border-b">
         <div className="flex h-16 items-center px-8">
           <MainNav className="mx-6" />
-          <div className="ml-auto flex items-center space-x-4">
-            <UserNav />
-          </div>
+
+          <UserNav />
         </div>
       </header>
       <main className="flex-1 space-y-4 p-8 pt-6">{children}</main>
