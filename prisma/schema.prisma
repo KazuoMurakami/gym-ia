@@ -8,19 +8,22 @@ datasource db {
 }
 
 model User {
-  id        Int         @id @default(autoincrement())
+  id        String      @id @default(cuid())
   name      String
   email     String      @unique
   createdAt DateTime    @default(now())
+  password  String
   workouts  Workout[] // Relação: Usuário pode ter vários treinos
   frequency Frequency[] // Relação: Usuário registra frequência
+  Account   Account[]
+  Session   Session[]
 }
 
 model Workout {
   id          Int        @id @default(autoincrement())
   name        String
   description String?
-  userId      Int
+  userId      String
   user        User       @relation(fields: [userId], references: [id])
   exercises   Exercise[] // Relação: Treino pode ter vários exercícios
 }
@@ -32,11 +35,57 @@ model Exercise {
   sets        Int
   workoutId   Int
   workout     Workout @relation(fields: [workoutId], references: [id])
+
+  accounts Account[]
+  sessions Session[]
 }
 
 model Frequency {
   id     Int      @id @default(autoincrement())
   date   DateTime
-  userId Int
+  userId String
   user   User     @relation(fields: [userId], references: [id])
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Exercise   Exercise? @relation(fields: [exerciseId], references: [id])
+  exerciseId Int?
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Exercise   Exercise? @relation(fields: [exerciseId], references: [id])
+  exerciseId Int?
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
 }

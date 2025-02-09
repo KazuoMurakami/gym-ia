@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
-import { UserAuthForm } from '@/components/user-auth-form'
+import UserCreateForm from '@/components/user-create-form'
 
 export const metadata: Metadata = {
   title: 'Cadastro',
@@ -77,7 +77,7 @@ export default function SignUpPage() {
                 Preencha os campos abaixo para se cadastrar
               </p>
             </div>
-            <UserAuthForm mode="signup" />
+            <UserCreateForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
               Ao clicar em cadastrar, você concorda com nossos{' '}
               <Link

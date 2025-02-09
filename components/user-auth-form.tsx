@@ -1,101 +1,50 @@
 'use client'
-
-import * as React from 'react'
-import { useSearchParams } from 'next/navigation'
-import { signIn } from 'next-auth/react'
-
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Icons } from '@/components/icons'
+import { signin } from '@/app/_actions/signin'
+import { useActionState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { AlertCircle } from 'lucide-react'
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  mode?: 'login' | 'signup'
-  className?: string
-}
+export default function UserAuthForm() {
+  const router = useRouter()
+  const [state, action, pending] = useActionState(signin, null)
 
-export function UserAuthForm({
-  className,
-  mode = 'login',
-  ...props
-}: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [error, setError] = React.useState<string | null>(null)
-  const searchParams = useSearchParams()
-
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    setIsLoading(true)
-    setError(null)
-
-    const form = event.target as HTMLFormElement
-    const email = form.email.value
-    const password = form.password.value
-
-    if (mode === 'signup') {
-      const name = form.name
-      // Aqui você deve implementar a lógica de cadastro
-      // Por exemplo, fazer uma chamada para sua API para criar um novo usuário
-      console.log('Cadastro', { name, email, password })
-      // Simulating an API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      // After successful signup, you might want to automatically sign in the user
-      // or redirect them to the login page
-      window.location.href = '/login'
-    } else {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-      })
-
-      if (result?.error) {
-        setError('Credenciais inválidas. Por favor, tente novamente.')
-      } else {
-        // Redirecionar para a página principal ou dashboard
-        window.location.href = searchParams?.get('callbackUrl') || '/'
-      }
+  useEffect(() => {
+    if (state?.success) {
+      router.push('/dashboard')
     }
-
-    setIsLoading(false)
-  }
+  }, [state?.success, router])
 
   return (
-    <div className={cn('grid gap-6', className)} {...props}>
-      <form onSubmit={onSubmit}>
+    <div className={cn('grid gap-6')}>
+      <form action={action}>
         <div className="grid gap-2">
-          {mode === 'signup' && (
-            <div className="grid gap-1">
-              <Label className="sr-only" htmlFor="name">
-                Nome
-              </Label>
-              <Input
-                id="name"
-                placeholder="Seu nome"
-                type="text"
-                autoCapitalize="words"
-                autoComplete="name"
-                autoCorrect="off"
-                disabled={isLoading}
-                required
-              />
-            </div>
-          )}
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
             <Input
               id="email"
+              name="email"
               placeholder="nome@exemplo.com"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading}
-              required
+              disabled={pending}
             />
+            {state?.errors && 'email' in state.errors && (
+              <div>
+                <div className="flex items-center space-x-2 text-red-500 py-2">
+                  <AlertCircle className="h-5 w-5" />
+                  <p>{state.errors.email}</p>
+                </div>
+              </div>
+            )}
           </div>
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="password">
@@ -103,43 +52,37 @@ export function UserAuthForm({
             </Label>
             <Input
               id="password"
+              name="password"
               placeholder="Senha"
               type="password"
               autoCapitalize="none"
-              autoComplete={
-                mode === 'signup' ? 'new-password' : 'current-password'
-              }
-              disabled={isLoading}
-              required
+              autoComplete={'current-password'}
+              disabled={pending}
             />
-          </div>
-          <Button disabled={isLoading}>
-            {isLoading && (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            {state?.errors && 'password' in state.errors && (
+              <div className="flex items-center space-x-2 text-red-500 py-2">
+                <AlertCircle className="h-5 w-5" />
+                <p className="font-medium">{state.errors.password}</p>
+              </div>
             )}
-            {mode === 'login' ? 'Entrar' : 'Cadastrar'}
+          </div>
+          <Button type="submit" disabled={pending}>
+            {pending && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+            entrar
           </Button>
+          {state?.errors && 'form' in state.errors && (
+            <div className="flex items-center space-x-2 text-red-500 py-2">
+              <AlertCircle className="h-5 w-5" />
+              <p className="font-medium">{state.errors.form}</p>
+            </div>
+          )}
         </div>
       </form>
-      {error && <p className="text-sm text-red-500">{error}</p>}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
-            Ou continue com
-          </span>
-        </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.gitHub className="mr-2 h-4 w-4" />
-        )}{' '}
-        Github
-      </Button>
     </div>
   )
 }
