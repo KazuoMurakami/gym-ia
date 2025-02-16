@@ -1,5 +1,5 @@
-import { DashboardHeader } from '../_components/dashboard-header'
-import { DashboardShell } from '../_components/dashboard-shell'
+import { DashboardHeader } from '../../_components/dashboard-header'
+import { DashboardShell } from '../../_components/dashboard-shell'
 
 export default function DicasPage() {
   return (

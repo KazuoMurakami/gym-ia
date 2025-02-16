@@ -1,5 +1,5 @@
-import { DashboardHeader } from '../_components/dashboard-header'
-import { DashboardShell } from '../_components/dashboard-shell'
+import { DashboardShell } from '../../_components/dashboard-shell'
+import { DashboardHeader } from '../../_components/dashboard-header'
 
 export default function GerarTreinoPage() {
   return (

@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
 
-import { Button } from '@/components/ui/button'
-import { PlusCircle } from 'lucide-react'
 import { DashboardHeader } from './_components/dashboard-header'
 import { DashboardShell } from './_components/dashboard-shell'
 import { Overview } from './_components/overview'
 import { RecentActivities } from './_components/recent-activities'
+import NewTreino from './_components/new-treino'
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -19,10 +18,7 @@ export default function DashboardPage() {
         heading="Dashboard"
         text="Bem-vindo ao seu painel de controle da academia."
       >
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" />
-          Novo Treino
-        </Button>
+        <NewTreino />
       </DashboardHeader>
       <div className="grid gap-4 ">
         <Overview />
